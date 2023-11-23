@@ -120,9 +120,9 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	}
 
 	@Override
-	public boolean updateDamage(String mstatus, String mid) {
+	public boolean updateDamage(String mid, MaintenanceRecord mainrecord) {
 		try {
-			mainMapper.updateDamage(mstatus, mid);
+			mainMapper.updateDamage(mainrecord.getFlight_id(), mainrecord.getMaintenance_type(), mainrecord.getIssue_description(), mainrecord.getArrival_date(), mainrecord.getCompletion_date(), mainrecord.getMaintenance_status(), mainrecord.getMaintenance_progress(), mid);
 			return true;
 		}
 		catch(Exception ex) {

@@ -96,15 +96,15 @@ public interface MaintenanceMapper {
 
 	@Update("UPDATE `maintenance_record`\r\n"
 			+ "SET \r\n"
-			+ "    flight_id = 'new_flight_id_value',\r\n"
-			+ "    maintenance_type = 'new_maintenance_type_value',\r\n"
-			+ "    issue_description = 'new_issue_description_value',\r\n"
-			+ "    arrival_date = 'new_arrival_date_value',\r\n"
-			+ "    completion_date = 'new_completion_date_value',\r\n"
-			+ "    maintenance_status = 'new_maintenance_status_value',\r\n"
-			+ "    maintenance_progress = 'new_maintenance_progress_value'\r\n"
-			+ "WHERE maintenance_id = 'your_target_maintenance_id';")
-	void updateDamage(@Param("fid") String fid, @Param("mtype") String mtype, @Param("idesc") String idesc, @Param("adate") String adate, @Param("cdate") String cdate, @Param("mstatus") String mstatus, @Param("mprogress") String mprogress);
+			+ "    flight_id = #{fid},\r\n"
+			+ "    maintenance_type = #{mtype},\r\n"
+			+ "    issue_description = #{idesc},\r\n"
+			+ "    arrival_date = #{adate},\r\n"
+			+ "    completion_date = #{cdate},\r\n"
+			+ "    maintenance_status = #{mstatus},\r\n"
+			+ "    maintenance_progress = #{mprogress} \r\n"
+			+ "WHERE maintenance_id = #{mid};")
+	void updateDamage(@Param("fid") String fid, @Param("mtype") String mtype, @Param("idesc") String idesc, @Param("adate") Date adate, @Param("cdate") Date cdate, @Param("mstatus") String mstatus, @Param("mprogress") double mprogress, @Param("mid") String mid);
 
 	@Delete("DELETE FROM `flight_info` WHERE aircraft_id = #{aid}")
 	void deleteFlight(@Param("aid") String aid);
