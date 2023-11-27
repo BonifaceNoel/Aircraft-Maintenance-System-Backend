@@ -16,7 +16,7 @@ public interface MaintenanceService {
 	public boolean newFlightDetails(String aid, int rnum, String model, String airline, String airid, String fclass, String status);
 	public boolean newMaintenanceDetails(String mid, String fid, String type, String issue, Date arrive, Date complete, String mainStatus, double progress);
 	public boolean updateFlight(String aid, FlightInfo flightinfo);
-	public boolean updateDamage(String mstatus, String mid);
+	public boolean updateDamage(String mid, MaintenanceRecord mainrecord);
 	public boolean deleteFlight(String aid);
 	public boolean deleteRecord(String mid);
 	public List<FlightInfo> getFlight(String aid);
