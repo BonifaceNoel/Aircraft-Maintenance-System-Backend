@@ -19,7 +19,9 @@ import com.ibsplc.his.api_his_project.bo.FlightInfo;
 import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.service.MaintenanceService;
 
 @RestController
@@ -57,7 +59,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/flightdamaged", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceFlightAPI() {
+	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceFlightAPI() throws GetFlightMaintenanceException {
 		List<MaintenanceStatusDTO> mainFlights = mainService.getFlightsForMaintenance();
 		ResponseEntity<List<MaintenanceStatusDTO>> mainFlightsEntity = null;
 
@@ -71,7 +73,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/flightsstatus/{status}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceStatusAPI(@PathVariable("status") String Status) {
+	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceStatusAPI(@PathVariable("status") String Status) throws GetMaintenanceStatusException {
 		List<MaintenanceStatusDTO> mainStatus = mainService.getMaintenanceStatus(Status);
 		ResponseEntity<List<MaintenanceStatusDTO>> mainStatusEntity = null;
 

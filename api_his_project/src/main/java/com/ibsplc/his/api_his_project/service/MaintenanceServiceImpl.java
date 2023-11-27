@@ -52,29 +52,27 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	}
 
 	@Override
-	public List<MaintenanceStatusDTO> getFlightsForMaintenance() {
+	public List<MaintenanceStatusDTO> getFlightsForMaintenance() throws GetFlightMaintenanceException {
 
 		List<MaintenanceStatusDTO> flightdamaged = new ArrayList<MaintenanceStatusDTO>();
 		try {
 			flightdamaged = mainMapper.getFlightsUnderMaintenance();
-			throw new GetFlightMaintenanceException("Error caused in Flights for maintenance");
 		}
-		catch(GetFlightMaintenanceException ex) {
-			System.out.println("Caught in Flight Maintenance Exception: "+ex.getMessage());
+		catch(Exception ex) {
+			throw new GetFlightMaintenanceException("Error caused in Flights for maintenance", ex.getCause());
 		}
 		return flightdamaged;
 	}
 
 	@Override
-	public List<MaintenanceStatusDTO> getMaintenanceStatus(String Status) {
+	public List<MaintenanceStatusDTO> getMaintenanceStatus(String Status) throws GetMaintenanceStatusException {
 
 		List<MaintenanceStatusDTO> flightmaintained = new ArrayList<MaintenanceStatusDTO>();
 		try {
 			flightmaintained = mainMapper.getMaintenanceDetails(Status);
-			throw new GetMaintenanceStatusException("Error caused in Maintenance Status Method");
 		}
-		catch(GetMaintenanceStatusException ex) {
-			System.out.println("Caught in Maintenance Status Exception: "+ex.getMessage());
+		catch(Exception ex) {
+			throw new GetMaintenanceStatusException("Error caused in Maintenance Status Method", ex.getCause());
 		}
 		return flightmaintained;
 	}
