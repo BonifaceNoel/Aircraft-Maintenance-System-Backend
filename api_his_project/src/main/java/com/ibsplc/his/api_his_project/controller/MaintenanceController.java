@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ibsplc.his.api_his_project.bo.FlightInfo;
 import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.service.MaintenanceService;
 
 @RestController
@@ -28,7 +30,7 @@ public class MaintenanceController {
 	MaintenanceService mainService;
 
 	@GetMapping(value="/flights", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<FlightInfo>> flightListAPI() {
+	public ResponseEntity<List<FlightInfo>> flightListAPI() throws GetFlightException {
 		List<FlightInfo> flightRecord = mainService.getFlightDetails();
 		ResponseEntity<List<FlightInfo>> flightEntity = null;
 
@@ -41,7 +43,7 @@ public class MaintenanceController {
 		return flightEntity;
 	}
 	@GetMapping(value="/maintenance", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceRecord>> maintenanceListAPI() {
+	public ResponseEntity<List<MaintenanceRecord>> maintenanceListAPI() throws GetMaintenanceException {
 		List<MaintenanceRecord> maintenanceRecord = mainService.getMaintenanceDetails();
 		ResponseEntity<List<MaintenanceRecord>> maintenanceEntity = null;
 

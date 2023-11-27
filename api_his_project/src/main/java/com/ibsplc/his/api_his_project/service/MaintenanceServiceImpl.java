@@ -25,30 +25,28 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	MaintenanceMapper mainMapper;
 
 	@Override
-	public List<FlightInfo> getFlightDetails() {
+	public List<FlightInfo> getFlightDetails() throws GetFlightException {
 
 		List<FlightInfo> flights = new ArrayList<FlightInfo>();
 		try {
 			flights = mainMapper.getFlightsRegistered();
-			throw new GetFlightException("Error caused in get flights");
 		}
-		catch(GetFlightException ex) {
-			System.out.println("Caught get Flight Exception: "+ex.getMessage());
+		catch(Exception ex) {
+			throw new GetFlightException("Error caused in get flights", ex.getCause());
 		}
 
 		return flights;
 	}
 
 	@Override
-	public List<MaintenanceRecord> getMaintenanceDetails() {
+	public List<MaintenanceRecord> getMaintenanceDetails() throws GetMaintenanceException {
 
 		List<MaintenanceRecord> records = new ArrayList<MaintenanceRecord>();
 		try {
 			records = mainMapper.getMaintenanceRegister();
-			throw new GetMaintenanceException("Error caused in get Maintenance function");
 		}
-		catch(GetMaintenanceException ex) {
-			System.out.println("Caught in Maintenance Exception: "+ex.getMessage());
+		catch(Exception ex) {
+			throw new GetMaintenanceException("Error caused in get Maintenance function", ex.getCause());
 		}
 		return records;
 	}
