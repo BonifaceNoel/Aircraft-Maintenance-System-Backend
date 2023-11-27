@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ibsplc.his.api_his_project.bo.FlightInfo;
 import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
+import com.ibsplc.his.api_his_project.exceptions.DeleteFlightException;
+import com.ibsplc.his.api_his_project.exceptions.DeleteRecordException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
@@ -161,7 +163,7 @@ public class MaintenanceController {
 	}
 
 	@DeleteMapping(value="/deleteFlight/{aid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> deleteFlight(@PathVariable("aid") String aid) {
+	public ResponseEntity<String> deleteFlight(@PathVariable("aid") String aid) throws DeleteFlightException {
 		String deleteStatus = "";
 		ResponseEntity<String> newDeleteEntity = null;
 
@@ -178,7 +180,7 @@ public class MaintenanceController {
 	}
 
 	@DeleteMapping(value="/deleteRecord/{mid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> deleteRecord(@PathVariable("mid") String mid) {
+	public ResponseEntity<String> deleteRecord(@PathVariable("mid") String mid) throws DeleteRecordException {
 		String deleteStatus = "{\"status\" : \"Success\"}";
 		ResponseEntity<String> newDeleteEntity = null;
 

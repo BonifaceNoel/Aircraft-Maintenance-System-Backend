@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.ibsplc.his.api_his_project.bo.FlightInfo;
 import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
+import com.ibsplc.his.api_his_project.exceptions.DeleteFlightException;
+import com.ibsplc.his.api_his_project.exceptions.DeleteRecordException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
@@ -139,27 +141,31 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	}
 
 	@Override
-	public boolean deleteFlight(String aid) {
+	public boolean deleteFlight(String aid) throws DeleteFlightException {
+		boolean result = false;
 		try {
 			mainMapper.deleteFlight(aid);
-			return true;
+			result = true;
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
+			result = false;
+			throw new DeleteFlightException("Error in delete flight: ", ex.getCause());
 		}
+		return result;
 	}
 
 	@Override
-	public boolean deleteRecord(String mid) {
+	public boolean deleteRecord(String mid) throws DeleteRecordException {
+		boolean result = false;
 		try {
 			mainMapper.deleteRecord(mid);
-			return true;
+			result = true;
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
+			result = false;
+			throw new DeleteRecordException("Error in delete maintenance record: ", ex.getCause());
 		}
+		return result;
 	}
 
 	@Override

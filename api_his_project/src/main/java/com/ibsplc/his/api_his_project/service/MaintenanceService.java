@@ -6,6 +6,8 @@ import java.util.List;
 import com.ibsplc.his.api_his_project.bo.FlightInfo;
 import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
+import com.ibsplc.his.api_his_project.exceptions.DeleteFlightException;
+import com.ibsplc.his.api_his_project.exceptions.DeleteRecordException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
@@ -25,8 +27,8 @@ public interface MaintenanceService {
 	public boolean newMaintenanceDetails(String mid, String fid, String type, String issue, Date arrive, Date complete, String mainStatus, double progress) throws NewMaintenanceException;
 	public boolean updateFlight(String aid, FlightInfo flightinfo) throws UpdateFlightException;
 	public boolean updateDamage(String mid, MaintenanceRecord mainrecord) throws UpdateDamageException;
-	public boolean deleteFlight(String aid);
-	public boolean deleteRecord(String mid);
+	public boolean deleteFlight(String aid) throws DeleteFlightException;
+	public boolean deleteRecord(String mid) throws DeleteRecordException;
 	public List<FlightInfo> getFlight(String aid);
 	public List<MaintenanceRecord> getRecord(String mid);
 }
