@@ -13,8 +13,10 @@ import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
 import com.ibsplc.his.api_his_project.exceptions.DeleteFlightException;
 import com.ibsplc.his.api_his_project.exceptions.DeleteRecordException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightByIdException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceByIdException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
@@ -169,33 +171,31 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	}
 
 	@Override
-	public List<FlightInfo> getFlight(String aid) {
+	public List<FlightInfo> getFlight(String aid) throws GetFlightByIdException {
 
 		List<FlightInfo> flightid = new ArrayList<FlightInfo>();
 		try {
 			flightid = mainMapper.getFlight().stream()
 					.filter(flightInfo -> flightInfo.getAircraft_id().equals(aid))
 					.collect(Collectors.toList());
-			throw new GetFlightException("Error in Get Flight method");
 		}
-		catch(GetFlightException ex) {
-			System.out.println("Caught in Get Flight method: "+ex.getMessage());
+		catch(Exception ex) {
+			throw new GetFlightByIdException("Error in Get Flight By ID: ", ex.getCause());
 		}
 		return flightid;
 	}
 
 	@Override
-	public List<MaintenanceRecord> getRecord(String mid) {
+	public List<MaintenanceRecord> getRecord(String mid) throws GetMaintenanceByIdException {
 
 		List<MaintenanceRecord> maintenanceid = new ArrayList<MaintenanceRecord>();
 		try {
 			maintenanceid = mainMapper.getRecord().stream()
 					.filter(maintenanceRecord -> maintenanceRecord.getMaintenance_id().equals(mid))
 					.collect(Collectors.toList());
-			throw new GetMaintenanceException("Error in get record method");
 		}
-		catch(GetMaintenanceException ex) {
-			System.out.println("Caught in Get Record Exception; "+ex.getMessage());
+		catch(Exception ex) {
+			throw new GetMaintenanceByIdException("Error in get maintenance by ID: ", ex.getCause());
 		}
 		return maintenanceid;
 	}

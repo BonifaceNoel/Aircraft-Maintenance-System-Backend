@@ -8,8 +8,10 @@ import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
 import com.ibsplc.his.api_his_project.exceptions.DeleteFlightException;
 import com.ibsplc.his.api_his_project.exceptions.DeleteRecordException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightByIdException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceByIdException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
@@ -29,6 +31,6 @@ public interface MaintenanceService {
 	public boolean updateDamage(String mid, MaintenanceRecord mainrecord) throws UpdateDamageException;
 	public boolean deleteFlight(String aid) throws DeleteFlightException;
 	public boolean deleteRecord(String mid) throws DeleteRecordException;
-	public List<FlightInfo> getFlight(String aid);
-	public List<MaintenanceRecord> getRecord(String mid);
+	public List<FlightInfo> getFlight(String aid) throws GetFlightByIdException;
+	public List<MaintenanceRecord> getRecord(String mid) throws GetMaintenanceByIdException;
 }

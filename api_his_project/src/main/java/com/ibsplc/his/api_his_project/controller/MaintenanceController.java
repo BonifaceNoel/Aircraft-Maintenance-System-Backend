@@ -20,8 +20,10 @@ import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
 import com.ibsplc.his.api_his_project.exceptions.DeleteFlightException;
 import com.ibsplc.his.api_his_project.exceptions.DeleteRecordException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightByIdException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceByIdException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
@@ -197,7 +199,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/flightsbyid/{aid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<FlightInfo>> flightsByID(@PathVariable("aid") String aid) {
+	public ResponseEntity<List<FlightInfo>> flightsByID(@PathVariable("aid") String aid) throws GetFlightByIdException {
 		List<FlightInfo> flightProduced = mainService.getFlight(aid);
 		ResponseEntity<List<FlightInfo>> flightEntity = null;
 
@@ -211,7 +213,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/maintenancebyid/{mid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceRecord>> maintenanceByID(@PathVariable("mid") String mid) {
+	public ResponseEntity<List<MaintenanceRecord>> maintenanceByID(@PathVariable("mid") String mid) throws GetMaintenanceByIdException {
 		List<MaintenanceRecord> maintenanceProduced = mainService.getRecord(mid);
 		ResponseEntity<List<MaintenanceRecord>> maintenanceEntity = null;
 
