@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- logback-spring.xml -->
+<configuration>
+
+	<!-- Appenders -->
+	<appender name="file"
+		class="ch.qos.logback.core.FileAppender">
+		<file>src/main/resources/AMTS-Log.txt</file> <!-- Specify the file path and name -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Loggers -->
+	<logger name="com.ibsplc.his.api_his_project" level="info">
+        <appender-ref ref="file"/>
+    </logger>
+
+    <logger name="com.ibsplc.his.api_his_project" level="warn">
+        <appender-ref ref="file"/>
+    </logger>
+	<root level="error">
+		<appender-ref ref="file" />
+	</root>
+
+</configuration>
