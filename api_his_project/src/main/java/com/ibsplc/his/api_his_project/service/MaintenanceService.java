@@ -12,6 +12,8 @@ import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
 import com.ibsplc.his.api_his_project.exceptions.NewMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateDamageException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateFlightException;
 
 public interface MaintenanceService {
 
@@ -21,8 +23,8 @@ public interface MaintenanceService {
 	public List<MaintenanceStatusDTO> getMaintenanceStatus(String status) throws GetMaintenanceStatusException;
 	public boolean newFlightDetails(String aid, int rnum, String model, String airline, String airid, String fclass, String status) throws NewFlightException;
 	public boolean newMaintenanceDetails(String mid, String fid, String type, String issue, Date arrive, Date complete, String mainStatus, double progress) throws NewMaintenanceException;
-	public boolean updateFlight(String aid, FlightInfo flightinfo);
-	public boolean updateDamage(String mid, MaintenanceRecord mainrecord);
+	public boolean updateFlight(String aid, FlightInfo flightinfo) throws UpdateFlightException;
+	public boolean updateDamage(String mid, MaintenanceRecord mainrecord) throws UpdateDamageException;
 	public boolean deleteFlight(String aid);
 	public boolean deleteRecord(String mid);
 	public List<FlightInfo> getFlight(String aid);

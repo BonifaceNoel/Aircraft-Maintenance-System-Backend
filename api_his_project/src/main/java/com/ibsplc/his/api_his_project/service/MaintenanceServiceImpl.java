@@ -17,6 +17,8 @@ import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
 import com.ibsplc.his.api_his_project.exceptions.NewMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateDamageException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateFlightException;
 import com.ibsplc.his.api_his_project.mapper.MaintenanceMapper;
 
 @Service
@@ -109,27 +111,31 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	}
 
 	@Override
-	public boolean updateFlight(String aid, FlightInfo flightinfo) {
+	public boolean updateFlight(String aid, FlightInfo flightinfo) throws UpdateFlightException {
+		boolean result = false;
 		try {
 			mainMapper.updateFlight(flightinfo.getReg_num(), flightinfo.getFlight_model(), flightinfo.getAirline(), flightinfo.getAirline_id(), flightinfo.getFlight_class(), flightinfo.getFlight_status(), aid);
-			return true;
+			result = true;
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
+			result = false;
+			throw new UpdateFlightException("Error in update flight: ", ex.getCause());
 		}
+		return result;
 	}
 
 	@Override
-	public boolean updateDamage(String mid, MaintenanceRecord mainrecord) {
+	public boolean updateDamage(String mid, MaintenanceRecord mainrecord) throws UpdateDamageException {
+		boolean result = false;
 		try {
 			mainMapper.updateDamage(mainrecord.getFlight_id(), mainrecord.getMaintenance_type(), mainrecord.getIssue_description(), mainrecord.getArrival_date(), mainrecord.getCompletion_date(), mainrecord.getMaintenance_status(), mainrecord.getMaintenance_progress(), mid);
-			return true;
+			result = true;
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
+			result = false;
+			throw new UpdateDamageException("Error in update damage: ", ex.getCause());
 		}
+		return result;
 	}
 
 	@Override

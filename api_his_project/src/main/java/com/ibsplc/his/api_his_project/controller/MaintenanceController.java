@@ -24,6 +24,8 @@ import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
 import com.ibsplc.his.api_his_project.exceptions.NewMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateDamageException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateFlightException;
 import com.ibsplc.his.api_his_project.service.MaintenanceService;
 
 @RestController
@@ -125,7 +127,7 @@ public class MaintenanceController {
 	}
 
 	@PutMapping(value="/updateflight/{aid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateFlight(@PathVariable("aid") String aid, @RequestBody FlightInfo flightinfo) {
+	public ResponseEntity<String> updateFlight(@PathVariable("aid") String aid, @RequestBody FlightInfo flightinfo) throws UpdateFlightException {
 		String updateStatus = "";
 		ResponseEntity<String> newUpdateEntity = null;
 
@@ -142,7 +144,7 @@ public class MaintenanceController {
 	}
 
 	@PutMapping(value="/updateDamage/{mid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateDamage(@PathVariable("mid") String mid, @RequestBody MaintenanceRecord mainrecord) {
+	public ResponseEntity<String> updateDamage(@PathVariable("mid") String mid, @RequestBody MaintenanceRecord mainrecord) throws UpdateDamageException {
 		String updateStatus = "";
 		ResponseEntity<String> newUpdateEntity = null;
 
