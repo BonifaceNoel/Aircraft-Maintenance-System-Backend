@@ -22,6 +22,8 @@ import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
+import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
+import com.ibsplc.his.api_his_project.exceptions.NewMaintenanceException;
 import com.ibsplc.his.api_his_project.service.MaintenanceService;
 
 @RestController
@@ -87,7 +89,7 @@ public class MaintenanceController {
 	}
 
 	@PostMapping(value="/newflight", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> newFlight(@RequestBody FlightInfo finfo) {
+	public ResponseEntity<String> newFlight(@RequestBody FlightInfo finfo) throws NewFlightException {
 		String addStatus = "";
 		ResponseEntity<String> newFlightEntity = null;
 
@@ -105,7 +107,7 @@ public class MaintenanceController {
 	}
 
 	@PostMapping(value="/newmaintenance", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> newMaintenance(@RequestBody MaintenanceRecord records) {
+	public ResponseEntity<String> newMaintenance(@RequestBody MaintenanceRecord records) throws NewMaintenanceException {
 		String addStatus = "";
 		ResponseEntity<String> newMaintenanceEntity = null;
 

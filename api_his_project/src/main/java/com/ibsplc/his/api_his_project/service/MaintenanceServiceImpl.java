@@ -16,6 +16,7 @@ import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
 import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
 import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
+import com.ibsplc.his.api_his_project.exceptions.NewMaintenanceException;
 import com.ibsplc.his.api_his_project.mapper.MaintenanceMapper;
 
 @Service
@@ -32,7 +33,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			flights = mainMapper.getFlightsRegistered();
 		}
 		catch(Exception ex) {
-			throw new GetFlightException("Error caused in get flights", ex.getCause());
+			throw new GetFlightException("Error in get flights: ", ex.getCause());
 		}
 
 		return flights;
@@ -46,7 +47,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			records = mainMapper.getMaintenanceRegister();
 		}
 		catch(Exception ex) {
-			throw new GetMaintenanceException("Error caused in get Maintenance function", ex.getCause());
+			throw new GetMaintenanceException("Error in get Maintenance: ", ex.getCause());
 		}
 		return records;
 	}
@@ -59,48 +60,52 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			flightdamaged = mainMapper.getFlightsUnderMaintenance();
 		}
 		catch(Exception ex) {
-			throw new GetFlightMaintenanceException("Error caused in Flights for maintenance", ex.getCause());
+			throw new GetFlightMaintenanceException("Error in get Flights for maintenance: ", ex.getCause());
 		}
 		return flightdamaged;
 	}
 
 	@Override
-	public List<MaintenanceStatusDTO> getMaintenanceStatus(String Status) throws GetMaintenanceStatusException {
+	public List<MaintenanceStatusDTO> getMaintenanceStatus(String status) throws GetMaintenanceStatusException {
 
 		List<MaintenanceStatusDTO> flightmaintained = new ArrayList<MaintenanceStatusDTO>();
 		try {
-			flightmaintained = mainMapper.getMaintenanceDetails(Status);
+			flightmaintained = mainMapper.getMaintenanceDetails(status);
 		}
 		catch(Exception ex) {
-			throw new GetMaintenanceStatusException("Error caused in Maintenance Status Method", ex.getCause());
+			throw new GetMaintenanceStatusException("Error in get Maintenance Status: ", ex.getCause());
 		}
 		return flightmaintained;
 	}
 
 	@Override
 	public boolean newFlightDetails(String aid, int rnum, String model, String airline, String airid, String fclass,
-			String status) {
+			String status) throws NewFlightException {
+		boolean result = false;
 		try {
 			mainMapper.newFlightDetails(aid, rnum, model, airline, airid, fclass, status);
-			return true;
+			result = true;
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
+			result = false;
+			throw new NewFlightException("Error in new Flight Details: ", ex.getCause());
 		}
+		return result;
 	}
 
 	@Override
 	public boolean newMaintenanceDetails(String mid, String fid, String type, String issue, Date arrive, Date complete,
-			String mainStatus, double progress) {
+			String mainStatus, double progress) throws NewMaintenanceException {
+		boolean result = false;
 		try {
 			mainMapper.newMaintenanceDetails(mid, fid, type, issue, arrive, complete, mainStatus, progress);
-			return true;
+			result = true;
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
+			result = false;
+			throw new NewMaintenanceException("Error in new Maintenance Details: ", ex.getCause());
 		}
+		return result;
 	}
 
 	@Override
