@@ -45,10 +45,10 @@ public class MaintenanceController {
 		ResponseEntity<List<FlightInfo>> flightEntity = null;
 
 		if(!flightRecord.isEmpty())
-			flightEntity = new ResponseEntity<List<FlightInfo>>(flightRecord, HttpStatus.OK);
+			flightEntity = new ResponseEntity<>(flightRecord, HttpStatus.OK);
 
 		else
-			flightEntity = new ResponseEntity<List<FlightInfo>>(HttpStatus.NOT_FOUND);
+			flightEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return flightEntity;
 	}
@@ -58,10 +58,10 @@ public class MaintenanceController {
 		ResponseEntity<List<MaintenanceRecord>> maintenanceEntity = null;
 
 		if(!maintenanceRecord.isEmpty())
-			maintenanceEntity = new ResponseEntity<List<MaintenanceRecord>>(maintenanceRecord, HttpStatus.OK);
+			maintenanceEntity = new ResponseEntity<>(maintenanceRecord, HttpStatus.OK);
 
 		else
-			maintenanceEntity = new ResponseEntity<List<MaintenanceRecord>>(HttpStatus.NOT_FOUND);
+			maintenanceEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return maintenanceEntity;
 	}
@@ -72,24 +72,24 @@ public class MaintenanceController {
 		ResponseEntity<List<MaintenanceStatusDTO>> mainFlightsEntity = null;
 
 		if(!mainFlights.isEmpty())
-			mainFlightsEntity = new ResponseEntity<List<MaintenanceStatusDTO>>(mainFlights, HttpStatus.OK);
+			mainFlightsEntity = new ResponseEntity<>(mainFlights, HttpStatus.OK);
 
 		else
-			mainFlightsEntity = new ResponseEntity<List<MaintenanceStatusDTO>>(HttpStatus.NOT_FOUND);
+			mainFlightsEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return mainFlightsEntity;
 	}
 
 	@GetMapping(value="/flightsstatus/{status}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceStatusAPI(@PathVariable("status") String Status) throws GetMaintenanceStatusException {
-		List<MaintenanceStatusDTO> mainStatus = mainService.getMaintenanceStatus(Status);
+	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceStatusAPI(@PathVariable("status") String status) throws GetMaintenanceStatusException {
+		List<MaintenanceStatusDTO> mainStatus = mainService.getMaintenanceStatus(status);
 		ResponseEntity<List<MaintenanceStatusDTO>> mainStatusEntity = null;
 
 		if(!mainStatus.isEmpty())
-			mainStatusEntity = new ResponseEntity<List<MaintenanceStatusDTO>>(mainStatus, HttpStatus.OK);
+			mainStatusEntity = new ResponseEntity<>(mainStatus, HttpStatus.OK);
 
 		else
-			mainStatusEntity = new ResponseEntity<List<MaintenanceStatusDTO>>(HttpStatus.NOT_FOUND);
+			mainStatusEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return mainStatusEntity;
 	}
@@ -102,11 +102,11 @@ public class MaintenanceController {
 		if(mainService.newFlightDetails(finfo.getAircraft_id(), finfo.getReg_num(), finfo.getFlight_model(), finfo.getAirline(),
 				finfo.getAirline_id(), finfo.getFlight_class(), finfo.getFlight_status())) {
 			addStatus= "{\"Add Status\" : \"Success\"}";
-			newFlightEntity = new ResponseEntity<String>(addStatus, HttpStatus.OK);
+			newFlightEntity = new ResponseEntity<>(addStatus, HttpStatus.OK);
 		}
 		else {
 			addStatus= "{\"Add Status\" : \"Failure\"}";
-			newFlightEntity = new ResponseEntity<String>(addStatus, HttpStatus.NOT_FOUND);
+			newFlightEntity = new ResponseEntity<>(addStatus, HttpStatus.NOT_FOUND);
 		}
 
 		return newFlightEntity;
@@ -120,11 +120,11 @@ public class MaintenanceController {
 		if(mainService.newMaintenanceDetails(records.getMaintenance_id(), records.getFlight_id(), records.getMaintenance_type(), records.getIssue_description(),
 				records.getArrival_date(), records.getCompletion_date(), records.getMaintenance_status(), records.getMaintenance_progress())) {
 			addStatus= "{\"Add Status\" : \"Success\"}";
-			newMaintenanceEntity = new ResponseEntity<String>(addStatus, HttpStatus.OK);
+			newMaintenanceEntity = new ResponseEntity<>(addStatus, HttpStatus.OK);
 		}
 		else {
 			addStatus= "{\"Add Status\" : \"Failure\"}";
-			newMaintenanceEntity = new ResponseEntity<String>(addStatus, HttpStatus.NOT_FOUND);
+			newMaintenanceEntity = new ResponseEntity<>(addStatus, HttpStatus.NOT_FOUND);
 		}
 
 		return newMaintenanceEntity;
@@ -137,11 +137,11 @@ public class MaintenanceController {
 
 		if(mainService.updateFlight(aid, flightinfo)) {
 			updateStatus = "{\"Update Status\" : \"Success\"}";
-			newUpdateEntity = new ResponseEntity<String>(updateStatus, HttpStatus.CREATED);
+			newUpdateEntity = new ResponseEntity<>(updateStatus, HttpStatus.CREATED);
 		}
 		else {
 			updateStatus = "{\"Update Status\" : \"Failure\"}";
-			newUpdateEntity = new ResponseEntity<String>(updateStatus, HttpStatus.NOT_FOUND);
+			newUpdateEntity = new ResponseEntity<>(updateStatus, HttpStatus.NOT_FOUND);
 		}
 
 		return newUpdateEntity;
@@ -154,11 +154,11 @@ public class MaintenanceController {
 
 		if(mainService.updateDamage(mid, mainrecord)) {
 			updateStatus = "{\"Update Status\" : \"Success\"}";
-			newUpdateEntity = new ResponseEntity<String>(updateStatus, HttpStatus.CREATED);
+			newUpdateEntity = new ResponseEntity<>(updateStatus, HttpStatus.CREATED);
 		}
 		else {
 			updateStatus = "{\"Update Status\" : \"Failure\"}";
-			newUpdateEntity = new ResponseEntity<String>(updateStatus, HttpStatus.NOT_FOUND);
+			newUpdateEntity = new ResponseEntity<>(updateStatus, HttpStatus.NOT_FOUND);
 		}
 
 		return newUpdateEntity;
@@ -171,11 +171,11 @@ public class MaintenanceController {
 
 		if(mainService.deleteFlight(aid)) {
 			deleteStatus = "{\"Delete Status\" : \"Success\"}";
-			newDeleteEntity = new ResponseEntity<String>(deleteStatus, HttpStatus.CREATED);
+			newDeleteEntity = new ResponseEntity<>(deleteStatus, HttpStatus.CREATED);
 		}
 		else {
 			deleteStatus = "{\"Delete Status\" : \"Failure\"}";
-			newDeleteEntity = new ResponseEntity<String>(deleteStatus, HttpStatus.NOT_FOUND);
+			newDeleteEntity = new ResponseEntity<>(deleteStatus, HttpStatus.NOT_FOUND);
 		}
 
 		return newDeleteEntity;
@@ -183,16 +183,16 @@ public class MaintenanceController {
 
 	@DeleteMapping(value="/deleteRecord/{mid}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> deleteRecord(@PathVariable("mid") String mid) throws DeleteRecordException {
-		String deleteStatus = "{\"status\" : \"Success\"}";
+		String deleteStatus = "";
 		ResponseEntity<String> newDeleteEntity = null;
 
 		if(mainService.deleteRecord(mid)) {
 			deleteStatus = "{\"Delete Status\" : \"Success\"}";
-			newDeleteEntity = new ResponseEntity<String>(deleteStatus, HttpStatus.CREATED);
+			newDeleteEntity = new ResponseEntity<>(deleteStatus, HttpStatus.CREATED);
 		}
 		else {
 			deleteStatus = "{\"Delete Status\" : \"Failure\"}";
-			newDeleteEntity = new ResponseEntity<String>(deleteStatus, HttpStatus.NOT_FOUND);
+			newDeleteEntity = new ResponseEntity<>(deleteStatus, HttpStatus.NOT_FOUND);
 		}
 
 		return newDeleteEntity;
@@ -204,10 +204,10 @@ public class MaintenanceController {
 		ResponseEntity<List<FlightInfo>> flightEntity = null;
 
 		if(!flightProduced.isEmpty())
-			flightEntity = new ResponseEntity<List<FlightInfo>>(flightProduced, HttpStatus.OK);
+			flightEntity = new ResponseEntity<>(flightProduced, HttpStatus.OK);
 
 		else
-			flightEntity = new ResponseEntity<List<FlightInfo>>(HttpStatus.NOT_FOUND);
+			flightEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return flightEntity;
 	}
@@ -218,10 +218,10 @@ public class MaintenanceController {
 		ResponseEntity<List<MaintenanceRecord>> maintenanceEntity = null;
 
 		if(!maintenanceProduced.isEmpty())
-			maintenanceEntity = new ResponseEntity<List<MaintenanceRecord>>(maintenanceProduced, HttpStatus.OK);
+			maintenanceEntity = new ResponseEntity<>(maintenanceProduced, HttpStatus.OK);
 
 		else
-			maintenanceEntity = new ResponseEntity<List<MaintenanceRecord>>(HttpStatus.NOT_FOUND);
+			maintenanceEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return maintenanceEntity;
 	}

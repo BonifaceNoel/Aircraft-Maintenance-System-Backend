@@ -34,7 +34,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	@Override
 	public List<FlightInfo> getFlightDetails() throws GetFlightException {
 
-		List<FlightInfo> flights = new ArrayList<FlightInfo>();
+		List<FlightInfo> flights = new ArrayList<>();
 		try {
 			flights = mainMapper.getFlightsRegistered();
 		}
@@ -48,7 +48,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	@Override
 	public List<MaintenanceRecord> getMaintenanceDetails() throws GetMaintenanceException {
 
-		List<MaintenanceRecord> records = new ArrayList<MaintenanceRecord>();
+		List<MaintenanceRecord> records = new ArrayList<>();
 		try {
 			records = mainMapper.getMaintenanceRegister();
 		}
@@ -61,7 +61,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	@Override
 	public List<MaintenanceStatusDTO> getFlightsForMaintenance() throws GetFlightMaintenanceException {
 
-		List<MaintenanceStatusDTO> flightdamaged = new ArrayList<MaintenanceStatusDTO>();
+		List<MaintenanceStatusDTO> flightdamaged = new ArrayList<>();
 		try {
 			flightdamaged = mainMapper.getFlightsUnderMaintenance();
 		}
@@ -74,7 +74,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	@Override
 	public List<MaintenanceStatusDTO> getMaintenanceStatus(String status) throws GetMaintenanceStatusException {
 
-		List<MaintenanceStatusDTO> flightmaintained = new ArrayList<MaintenanceStatusDTO>();
+		List<MaintenanceStatusDTO> flightmaintained = new ArrayList<>();
 		try {
 			flightmaintained = mainMapper.getMaintenanceDetails(status);
 		}
@@ -93,7 +93,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			result = true;
 		}
 		catch(Exception ex) {
-			result = false;
 			throw new NewFlightException("Error in new Flight Details: ", ex.getCause());
 		}
 		return result;
@@ -108,7 +107,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			result = true;
 		}
 		catch(Exception ex) {
-			result = false;
 			throw new NewMaintenanceException("Error in new Maintenance Details: ", ex.getCause());
 		}
 		return result;
@@ -122,7 +120,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			result = true;
 		}
 		catch(Exception ex) {
-			result = false;
 			throw new UpdateFlightException("Error in update flight: ", ex.getCause());
 		}
 		return result;
@@ -136,7 +133,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			result = true;
 		}
 		catch(Exception ex) {
-			result = false;
 			throw new UpdateDamageException("Error in update damage: ", ex.getCause());
 		}
 		return result;
@@ -150,7 +146,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			result = true;
 		}
 		catch(Exception ex) {
-			result = false;
 			throw new DeleteFlightException("Error in delete flight: ", ex.getCause());
 		}
 		return result;
@@ -164,7 +159,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 			result = true;
 		}
 		catch(Exception ex) {
-			result = false;
 			throw new DeleteRecordException("Error in delete maintenance record: ", ex.getCause());
 		}
 		return result;
@@ -173,7 +167,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	@Override
 	public List<FlightInfo> getFlight(String aid) throws GetFlightByIdException {
 
-		List<FlightInfo> flightid = new ArrayList<FlightInfo>();
+		List<FlightInfo> flightid = new ArrayList<>();
 		try {
 			flightid = mainMapper.getFlight().stream()
 					.filter(flightInfo -> flightInfo.getAircraft_id().equals(aid))
@@ -188,7 +182,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	@Override
 	public List<MaintenanceRecord> getRecord(String mid) throws GetMaintenanceByIdException {
 
-		List<MaintenanceRecord> maintenanceid = new ArrayList<MaintenanceRecord>();
+		List<MaintenanceRecord> maintenanceid = new ArrayList<>();
 		try {
 			maintenanceid = mainMapper.getRecord().stream()
 					.filter(maintenanceRecord -> maintenanceRecord.getMaintenance_id().equals(mid))
