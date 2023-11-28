@@ -37,6 +37,9 @@ out/
 .vscode/
 
 ### Eclipse IDE ###
+gradlew
 *.log
 *.lock
+*.bat
+*.jar
 
