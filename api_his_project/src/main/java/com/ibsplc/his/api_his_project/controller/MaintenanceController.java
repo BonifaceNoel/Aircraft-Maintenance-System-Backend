@@ -18,6 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ibsplc.his.api_his_project.bo.FlightInfo;
 import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
+import com.ibsplc.his.api_his_project.exceptions.DeleteFlightException;
+import com.ibsplc.his.api_his_project.exceptions.DeleteRecordException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightByIdException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceByIdException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
+import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
+import com.ibsplc.his.api_his_project.exceptions.NewMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateDamageException;
+import com.ibsplc.his.api_his_project.exceptions.UpdateFlightException;
 import com.ibsplc.his.api_his_project.service.MaintenanceService;
 
 @RestController
@@ -28,7 +40,7 @@ public class MaintenanceController {
 	MaintenanceService mainService;
 
 	@GetMapping(value="/flights", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<FlightInfo>> flightListAPI() {
+	public ResponseEntity<List<FlightInfo>> flightListAPI() throws GetFlightException {
 		List<FlightInfo> flightRecord = mainService.getFlightDetails();
 		ResponseEntity<List<FlightInfo>> flightEntity = null;
 
@@ -41,7 +53,7 @@ public class MaintenanceController {
 		return flightEntity;
 	}
 	@GetMapping(value="/maintenance", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceRecord>> maintenanceListAPI() {
+	public ResponseEntity<List<MaintenanceRecord>> maintenanceListAPI() throws GetMaintenanceException {
 		List<MaintenanceRecord> maintenanceRecord = mainService.getMaintenanceDetails();
 		ResponseEntity<List<MaintenanceRecord>> maintenanceEntity = null;
 
@@ -55,7 +67,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/flightdamaged", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceFlightAPI() {
+	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceFlightAPI() throws GetFlightMaintenanceException {
 		List<MaintenanceStatusDTO> mainFlights = mainService.getFlightsForMaintenance();
 		ResponseEntity<List<MaintenanceStatusDTO>> mainFlightsEntity = null;
 
@@ -69,7 +81,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/flightsstatus/{status}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceStatusAPI(@PathVariable("status") String Status) {
+	public ResponseEntity<List<MaintenanceStatusDTO>> maintenanceStatusAPI(@PathVariable("status") String Status) throws GetMaintenanceStatusException {
 		List<MaintenanceStatusDTO> mainStatus = mainService.getMaintenanceStatus(Status);
 		ResponseEntity<List<MaintenanceStatusDTO>> mainStatusEntity = null;
 
@@ -83,7 +95,7 @@ public class MaintenanceController {
 	}
 
 	@PostMapping(value="/newflight", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> newFlight(@RequestBody FlightInfo finfo) {
+	public ResponseEntity<String> newFlight(@RequestBody FlightInfo finfo) throws NewFlightException {
 		String addStatus = "";
 		ResponseEntity<String> newFlightEntity = null;
 
@@ -101,7 +113,7 @@ public class MaintenanceController {
 	}
 
 	@PostMapping(value="/newmaintenance", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> newMaintenance(@RequestBody MaintenanceRecord records) {
+	public ResponseEntity<String> newMaintenance(@RequestBody MaintenanceRecord records) throws NewMaintenanceException {
 		String addStatus = "";
 		ResponseEntity<String> newMaintenanceEntity = null;
 
@@ -119,7 +131,7 @@ public class MaintenanceController {
 	}
 
 	@PutMapping(value="/updateflight/{aid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateFlight(@PathVariable("aid") String aid, @RequestBody FlightInfo flightinfo) {
+	public ResponseEntity<String> updateFlight(@PathVariable("aid") String aid, @RequestBody FlightInfo flightinfo) throws UpdateFlightException {
 		String updateStatus = "";
 		ResponseEntity<String> newUpdateEntity = null;
 
@@ -136,7 +148,7 @@ public class MaintenanceController {
 	}
 
 	@PutMapping(value="/updateDamage/{mid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateDamage(@PathVariable("mid") String mid, @RequestBody MaintenanceRecord mainrecord) {
+	public ResponseEntity<String> updateDamage(@PathVariable("mid") String mid, @RequestBody MaintenanceRecord mainrecord) throws UpdateDamageException {
 		String updateStatus = "";
 		ResponseEntity<String> newUpdateEntity = null;
 
@@ -153,7 +165,7 @@ public class MaintenanceController {
 	}
 
 	@DeleteMapping(value="/deleteFlight/{aid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> deleteFlight(@PathVariable("aid") String aid) {
+	public ResponseEntity<String> deleteFlight(@PathVariable("aid") String aid) throws DeleteFlightException {
 		String deleteStatus = "";
 		ResponseEntity<String> newDeleteEntity = null;
 
@@ -170,7 +182,7 @@ public class MaintenanceController {
 	}
 
 	@DeleteMapping(value="/deleteRecord/{mid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> deleteRecord(@PathVariable("mid") String mid) {
+	public ResponseEntity<String> deleteRecord(@PathVariable("mid") String mid) throws DeleteRecordException {
 		String deleteStatus = "{\"status\" : \"Success\"}";
 		ResponseEntity<String> newDeleteEntity = null;
 
@@ -187,7 +199,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/flightsbyid/{aid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<FlightInfo>> flightsByID(@PathVariable("aid") String aid) {
+	public ResponseEntity<List<FlightInfo>> flightsByID(@PathVariable("aid") String aid) throws GetFlightByIdException {
 		List<FlightInfo> flightProduced = mainService.getFlight(aid);
 		ResponseEntity<List<FlightInfo>> flightEntity = null;
 
@@ -201,7 +213,7 @@ public class MaintenanceController {
 	}
 
 	@GetMapping(value="/maintenancebyid/{mid}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MaintenanceRecord>> maintenanceByID(@PathVariable("mid") String mid) {
+	public ResponseEntity<List<MaintenanceRecord>> maintenanceByID(@PathVariable("mid") String mid) throws GetMaintenanceByIdException {
 		List<MaintenanceRecord> maintenanceProduced = mainService.getRecord(mid);
 		ResponseEntity<List<MaintenanceRecord>> maintenanceEntity = null;
 

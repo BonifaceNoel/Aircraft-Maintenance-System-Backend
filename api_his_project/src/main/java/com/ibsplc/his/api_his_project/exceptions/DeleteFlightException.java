@@ -1,18 +1,14 @@
 package com.ibsplc.his.api_his_project.exceptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SuppressWarnings("serial")
 public class DeleteFlightException extends Exception {
 
-	public DeleteFlightException() {
-		super();
-	}
-	public DeleteFlightException(String error) {
-		super(error);
-	}
+	private static final Logger logger = LoggerFactory.getLogger(DeleteFlightException.class);
+
 	public DeleteFlightException(String error, Throwable cause) {
-		super(error, cause);
-	}
-	public DeleteFlightException(Throwable cause) {
-		super(cause);
+		logger.error(error + "" + cause);
 	}
 }

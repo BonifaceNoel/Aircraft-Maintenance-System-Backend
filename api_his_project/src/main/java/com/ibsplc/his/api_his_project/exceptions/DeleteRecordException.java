@@ -1,18 +1,14 @@
 package com.ibsplc.his.api_his_project.exceptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SuppressWarnings("serial")
 public class DeleteRecordException extends Exception {
 
-	public DeleteRecordException() {
-		super();
-	}
-	public DeleteRecordException(String error) {
-		super(error);
-	}
+	private static final Logger logger = LoggerFactory.getLogger(DeleteRecordException.class);
+
 	public DeleteRecordException(String error, Throwable cause) {
-		super(error, cause);
-	}
-	public DeleteRecordException(Throwable cause) {
-		super(cause);
+		logger.error(error + "" + cause);
 	}
 }

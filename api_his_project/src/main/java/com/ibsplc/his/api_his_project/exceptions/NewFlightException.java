@@ -1,18 +1,14 @@
 package com.ibsplc.his.api_his_project.exceptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SuppressWarnings("serial")
 public class NewFlightException extends Exception{
 
-	public NewFlightException() {
-		super();
-	}
-	public NewFlightException(String error) {
-		super(error);
-	}
+	private static final Logger logger = LoggerFactory.getLogger(NewFlightException.class);
+
 	public NewFlightException(String error, Throwable cause) {
-		super(error, cause);
-	}
-	public NewFlightException(Throwable cause) {
-		super(cause);
+		logger.error(error + "" + cause);
 	}
 }

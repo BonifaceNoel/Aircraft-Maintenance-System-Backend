@@ -1,18 +1,14 @@
 package com.ibsplc.his.api_his_project.exceptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SuppressWarnings("serial")
 public class GetFlightMaintenanceException extends Exception{
 
-	public GetFlightMaintenanceException() {
-		super();
-	}
-	public GetFlightMaintenanceException(String error) {
-		super(error);
-	}
+	private static final Logger logger = LoggerFactory.getLogger(GetFlightMaintenanceException.class);
+
 	public GetFlightMaintenanceException(String error, Throwable cause) {
-		super(error, cause);
-	}
-	public GetFlightMaintenanceException(Throwable cause) {
-		super(cause);
+		logger.error(error + "" + cause);
 	}
 }

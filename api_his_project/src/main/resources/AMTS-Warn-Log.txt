@@ -1,0 +1,1 @@
+10:16:23.517 [http-nio-8090-exec-2] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'DEF456' for key 'flight_info.PRIMARY'

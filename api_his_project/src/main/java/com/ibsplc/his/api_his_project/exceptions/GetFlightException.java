@@ -1,19 +1,14 @@
 package com.ibsplc.his.api_his_project.exceptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SuppressWarnings("serial")
 public class GetFlightException extends Exception {
 
-	public GetFlightException() {
-		super();
-	}
+	private static final Logger logger = LoggerFactory.getLogger(GetFlightException.class);
 
-	public GetFlightException(String error) {
-		super(error);
-	}
 	public GetFlightException(String error, Throwable cause) {
-		super(error, cause);
-	}
-	public GetFlightException(Throwable cause) {
-		super(cause);
+		logger.error(error + "" + cause);
 	}
 }

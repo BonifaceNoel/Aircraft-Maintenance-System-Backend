@@ -1,18 +1,14 @@
 package com.ibsplc.his.api_his_project.exceptions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SuppressWarnings("serial")
 public class GetMaintenanceStatusException extends Exception {
 
-	public GetMaintenanceStatusException() {
-		super();
-	}
-	public GetMaintenanceStatusException(String error) {
-		super(error);
-	}
+	private static final Logger logger = LoggerFactory.getLogger(GetMaintenanceStatusException.class);
+
 	public GetMaintenanceStatusException(String error, Throwable cause) {
-		super(error, cause);
-	}
-	public GetMaintenanceStatusException(Throwable cause) {
-		super(cause);
+		logger.error(error + "" + cause);
 	}
 }
