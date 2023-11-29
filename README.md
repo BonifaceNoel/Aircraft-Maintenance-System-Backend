@@ -10,7 +10,7 @@ This repository contains the backend code for an Aircraft Maintenance Tracking S
 
 - **RESTful API**: The application exposes a set of RESTful APIs to perform CRUD (Create, Read, Update, Delete) operations on flight and maintenance data.
 
-- **JPA (Java Persistence API)**: JPA is used for managing the persistence of Java objects to the database. It simplifies database interactions and allows for easy integration with various databases.
+- **JPA -MyBatis (Java Persistence API)**: JPA MyBatis is used for managing the persistence of Java objects to the database. It simplifies database interactions and allows for easy integration with various databases.
 
 - **H2 Database**: The H2 database is used as an in-memory database for development and testing purposes. It provides a lightweight and fast database solution.
 
@@ -43,7 +43,7 @@ Make sure you have Java and Maven installed on your machine.
 ## Configuration
 
 - The application is configured to allow cross-origin requests from `http://localhost:5173`.
-- The H2 database console is accessible at `http://localhost:8090/h2-console` with JDBC URL `jdbc:mysql://localhost:3306/aircraft_maintenance_system`.
+- The H2 database console is accessible at `http://localhost:8090/h2-console` with MySQL URL `jdbc:mysql://localhost:3306/aircraft_maintenance_system`.
 
 ## Contributing
 
