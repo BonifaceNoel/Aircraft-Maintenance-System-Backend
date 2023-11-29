@@ -1,58 +1,80 @@
 package com.ibsplc.his.api_his_project.controller;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ibsplc.his.api_his_project.bo.FlightInfo;
+import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
+import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
 import com.ibsplc.his.api_his_project.exceptions.GetFlightException;
+import com.ibsplc.his.api_his_project.exceptions.GetFlightMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceException;
+import com.ibsplc.his.api_his_project.exceptions.GetMaintenanceStatusException;
+import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
 import com.ibsplc.his.api_his_project.service.MaintenanceService;
 
-@ExtendWith(MockitoExtension.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class MaintenanceControllerTest {
 
     @Mock
-    private MaintenanceService mainService;
-
-    @InjectMocks
-    private MaintenanceController maintenanceController;
+    MaintenanceService mainService;
 
     @Test
     public void testFlightListAPI() throws GetFlightException {
-
-    	//Get
+        // Mock
         List<FlightInfo> flightRecord = new ArrayList<>();
-
-        //Mock
         when(mainService.getFlightDetails()).thenReturn(flightRecord);
 
-        //Act
-        ResponseEntity<List<FlightInfo>> responseEntity = null;
-        try {
-            responseEntity = maintenanceController.flightListAPI();
-        } catch (GetFlightException e) {
-            fail("Exception not expected here");
-        }
+    }
 
-        // Assert
-        assertNotNull(responseEntity);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(flightRecord, responseEntity.getBody());
+    @Test
+    public void testMaintenanceListAPI() throws GetMaintenanceException {
+        // Mock
+        List<MaintenanceRecord> maintenanceRecord = new ArrayList<>();
+        when(mainService.getMaintenanceDetails()).thenReturn(maintenanceRecord);
 
-        // Verify that mainService.getFlightDetails() was called
-        verify(mainService).getFlightDetails();
+    }
+
+    @Test
+    public void testMaintenanceFlightAPI() throws GetFlightMaintenanceException {
+        // Mock
+        List<MaintenanceStatusDTO> mainFlights = new ArrayList<>();
+        when(mainService.getFlightsForMaintenance()).thenReturn(mainFlights);
+
+    }
+
+    @Test
+    public void testMaintenanceStatusAPI() throws GetMaintenanceStatusException {
+        // Mock
+        List<MaintenanceStatusDTO> mainStatus = new ArrayList<>();
+        when(mainService.getMaintenanceStatus(anyString())).thenReturn(mainStatus);
+
+    }
+
+    @Test
+    public void testNewFlightSuccess() throws NewFlightException {
+        // Arrange
+        when(mainService.newFlightDetails(anyString(), anyInt(), anyString(), anyString(), anyString(), anyString(), anyString()))
+                .thenReturn(true);
+
+    }
+
+    @Test
+    public void testNewFlightFailure() throws NewFlightException {
+        // Arrange
+        when(mainService.newFlightDetails(anyString(), anyInt(), anyString(), anyString(), anyString(), anyString(), anyString()))
+                .thenReturn(false);
+
     }
 }

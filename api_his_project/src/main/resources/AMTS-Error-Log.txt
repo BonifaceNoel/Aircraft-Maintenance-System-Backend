@@ -1,0 +1,4 @@
+14:41:19.138 [main] ERROR c.i.h.a.e.GetFlightMaintenanceException - Error in get Flights for maintenance: null
+14:41:19.204 [main] ERROR c.i.h.a.e.GetFlightException - Error in get flights: null
+14:41:19.254 [main] ERROR c.i.h.a.e.GetMaintenanceStatusException - Error in get Maintenance Status: null
+14:41:19.318 [main] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: null
