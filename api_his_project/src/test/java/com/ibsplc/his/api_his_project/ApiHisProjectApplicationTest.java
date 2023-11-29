@@ -9,6 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
+import com.ibsplc.his.api_his_project.ApiHisProjectApplication;
+
 public class ApiHisProjectApplicationTest {
 
 	@Autowired
