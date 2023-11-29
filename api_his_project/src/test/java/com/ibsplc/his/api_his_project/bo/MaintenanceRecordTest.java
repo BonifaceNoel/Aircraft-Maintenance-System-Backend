@@ -2,6 +2,8 @@ package com.ibsplc.his.api_his_project.bo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 
@@ -50,4 +52,11 @@ public class MaintenanceRecordTest {
                 ", maintenance_status=In Progress, maintenance_progress=50.0]";
         assertEquals(expectedString, maintenanceRecord.toString());
     }
+   @Test
+   public void dataMock() {
+	   MaintenanceRecord mainRecord = mock(MaintenanceRecord.class);
+	   
+	   when(mainRecord.getFlight_id()).thenReturn("F456");
+	   when(mainRecord.getMaintenance_id()).thenReturn("M123");
+   }
 }
