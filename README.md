@@ -33,8 +33,8 @@ The following API endpoints are available:
 
 ## Setup Instructions
 
-1. Clone the repository: `git clone https://github.com/your-username/aircraft-maintenance-backend.git`
-2. Navigate to the project directory: `cd aircraft-maintenance-backend`
+1. Clone the repository: `git clone https://github.com/BonifaceNoel/Aircraft-Maintenance-System-Backend.git`
+2. Navigate to the project directory: `cd Aircraft-Maintenance-System-Backend`
 3. Build the project: `./mvnw clean install`
 4. Run the application: `./mvnw spring-boot:run`
 
@@ -43,7 +43,7 @@ Make sure you have Java and Maven installed on your machine.
 ## Configuration
 
 - The application is configured to allow cross-origin requests from `http://localhost:5173`.
-- The H2 database console is accessible at `http://localhost:8080/h2-console` with JDBC URL `jdbc:h2:mem:testdb`.
+- The H2 database console is accessible at `http://localhost:8090/h2-console` with JDBC URL `jdbc:mysql://localhost:3306/aircraft_maintenance_system`.
 
 ## Contributing
 
