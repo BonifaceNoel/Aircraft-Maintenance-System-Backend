@@ -1,15 +1,13 @@
 package com.ibsplc.his.api_his_project;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-
-import com.ibsplc.his.api_his_project.ApiHisProjectApplication;
 
 public class ApiHisProjectApplicationTest {
 
