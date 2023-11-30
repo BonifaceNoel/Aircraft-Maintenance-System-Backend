@@ -1,7 +1,8 @@
 package com.ibsplc.his.api_his_project.bo;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class MaintenanceStatusDTOTest {
 
