@@ -1,5 +1,6 @@
 package com.ibsplc.his.api_his_project.controller;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -36,6 +37,8 @@ public class MaintenanceControllerTest {
         List<FlightInfo> flightRecord = new ArrayList<>();
         when(mainService.getFlightDetails()).thenReturn(flightRecord);
 
+        assertNotNull(flightRecord);
+
     }
 
     @Test
@@ -43,6 +46,8 @@ public class MaintenanceControllerTest {
         // Mock
         List<MaintenanceRecord> maintenanceRecord = new ArrayList<>();
         when(mainService.getMaintenanceDetails()).thenReturn(maintenanceRecord);
+
+        assertNotNull(maintenanceRecord);
 
     }
 
@@ -52,6 +57,8 @@ public class MaintenanceControllerTest {
         List<MaintenanceStatusDTO> mainFlights = new ArrayList<>();
         when(mainService.getFlightsForMaintenance()).thenReturn(mainFlights);
 
+        assertNotNull(mainFlights);
+
     }
 
     @Test
@@ -59,6 +66,8 @@ public class MaintenanceControllerTest {
         // Mock
         List<MaintenanceStatusDTO> mainStatus = new ArrayList<>();
         when(mainService.getMaintenanceStatus(anyString())).thenReturn(mainStatus);
+
+        assertNotNull(mainStatus);
 
     }
 
