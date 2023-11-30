@@ -5,3 +5,4 @@
 14:41:19.254 [main] ERROR c.i.h.a.e.GetMaintenanceStatusException - Error in get Maintenance Status: null
 14:41:19.318 [main] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: null
 11:03:27.705 [main] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '' for key 'flight_info.PRIMARY'
+15:01:15.372 [main] ERROR c.i.h.a.e.DeleteFlightException - Test error messagejava.lang.RuntimeException: Test cause

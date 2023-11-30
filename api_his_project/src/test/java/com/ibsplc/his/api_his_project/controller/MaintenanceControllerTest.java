@@ -1,7 +1,7 @@
 package com.ibsplc.his.api_his_project.controller;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -9,15 +9,12 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import com.ibsplc.his.api_his_project.bo.FlightInfo;
 import com.ibsplc.his.api_his_project.bo.MaintenanceRecord;
 import com.ibsplc.his.api_his_project.bo.MaintenanceStatusDTO;
@@ -31,7 +28,6 @@ import com.ibsplc.his.api_his_project.exceptions.NewFlightException;
 import com.ibsplc.his.api_his_project.exceptions.UpdateFlightException;
 import com.ibsplc.his.api_his_project.service.MaintenanceService;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class MaintenanceControllerTest {
 

@@ -189,3 +189,4 @@
 14:08:07.182 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8090 (http) with context path '/apihome'
 14:08:07.186 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
 14:08:13.741 [RMI TCP Connection(12)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+15:01:15.372 [main] ERROR c.i.h.a.e.DeleteFlightException - Test error messagejava.lang.RuntimeException: Test cause
