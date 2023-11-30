@@ -1,2 +1,7 @@
 10:16:23.517 [http-nio-8090-exec-2] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'DEF456' for key 'flight_info.PRIMARY'
 10:57:22.038 [http-nio-8090-exec-3] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'DEF456' for key 'flight_info.PRIMARY'
+14:41:19.138 [main] ERROR c.i.h.a.e.GetFlightMaintenanceException - Error in get Flights for maintenance: null
+14:41:19.204 [main] ERROR c.i.h.a.e.GetFlightException - Error in get flights: null
+14:41:19.254 [main] ERROR c.i.h.a.e.GetMaintenanceStatusException - Error in get Maintenance Status: null
+14:41:19.318 [main] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: null
+11:03:27.705 [main] ERROR c.i.h.a.e.NewFlightException - Error in new Flight Details: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '' for key 'flight_info.PRIMARY'
