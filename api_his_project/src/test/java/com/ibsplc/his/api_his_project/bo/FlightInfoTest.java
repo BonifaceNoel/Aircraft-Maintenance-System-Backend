@@ -1,17 +1,17 @@
 package com.ibsplc.his.api_his_project.bo;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class FlightInfoTest {
 
 	public FlightInfo flightInfo;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         // Initialize a FlightInfo object before each test
         flightInfo = new FlightInfo("ABC123", 123456, "Boeing 747", "Example Airlines", "E123", "Business", "On Time");
