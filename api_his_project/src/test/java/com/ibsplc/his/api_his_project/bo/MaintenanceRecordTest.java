@@ -1,13 +1,13 @@
 package com.ibsplc.his.api_his_project.bo;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MaintenanceRecordTest {
 
@@ -55,7 +55,7 @@ public class MaintenanceRecordTest {
    @Test
    public void dataMock() {
 	   MaintenanceRecord mainRecord = mock(MaintenanceRecord.class);
-	   
+
 	   when(mainRecord.getFlight_id()).thenReturn("F456");
 	   when(mainRecord.getMaintenance_id()).thenReturn("M123");
    }
