@@ -3,7 +3,7 @@ package com.ibsplc.his.api_his_project.exceptions;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
 public class DeleteFlightExceptionTest {
