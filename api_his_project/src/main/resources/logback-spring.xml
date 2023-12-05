@@ -5,7 +5,7 @@
 	<!-- Appenders -->
 	<appender name="infofile"
 		class="ch.qos.logback.core.FileAppender">
-		<file>src/main/resources/AMTS-Info-Log.txt</file> <!-- Specify the file path and name -->
+		<file>src/main/resources/AMTS-Info-Log.log</file> <!-- Specify the file path and name -->
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</pattern>
@@ -14,7 +14,7 @@
 
 	<appender name="warnfile"
 		class="ch.qos.logback.core.FileAppender">
-		<file>src/main/resources/AMTS-Warn-Log.txt</file> <!-- Specify the file path and name -->
+		<file>src/main/resources/AMTS-Warn-Log.log</file> <!-- Specify the file path and name -->
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</pattern>
@@ -23,7 +23,7 @@
 
 	<appender name="errorfile"
 		class="ch.qos.logback.core.FileAppender">
-		<file>src/main/resources/AMTS-Error-Log.txt</file> <!-- Specify the file path and name -->
+		<file>src/main/resources/AMTS-Error-Log.log</file> <!-- Specify the file path and name -->
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</pattern>
